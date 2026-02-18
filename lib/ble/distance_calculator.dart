@@ -1,3 +1,5 @@
+// lib/ble/distance_calculator.dart
+
 import 'dart:math';
 
 class DistanceCalculator {

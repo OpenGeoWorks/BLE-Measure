@@ -1,9 +1,12 @@
+// lib/screens/device_list_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../ble/ble_manager.dart';
 import 'home_screen.dart';
 import 'about_screen.dart';
+import 'donation_screen.dart';
 import 'dart:math';
 
 class DeviceListScreen extends StatefulWidget {
@@ -296,6 +299,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Row(
           children: [
@@ -334,7 +338,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
             ],
           ],
         ),
-        backgroundColor: isScanning ? Colors.blue.shade50 : null,
+        backgroundColor: isScanning ? Colors.blue.shade50 : Colors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.bug_report),
@@ -348,7 +352,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.indigo,
               ),
               child: Column(
@@ -398,11 +402,10 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
               title: const Text('Donation'),
               onTap: () {
                 Navigator.pop(context); // Close drawer
-                // TODO: Add donation functionality
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Donation feature coming soon!'),
-                    duration: Duration(seconds: 2),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DonationScreen(),
                   ),
                 );
               },
@@ -575,7 +578,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor: deviceTypeColor,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.bluetooth,
                                   color: Colors.white,
                                   size: 20,
